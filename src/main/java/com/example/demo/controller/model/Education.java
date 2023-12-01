@@ -21,8 +21,6 @@ public class Education {
     @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
 
-    // Construtores, getters e setters
-
     public Education() {
     }
 

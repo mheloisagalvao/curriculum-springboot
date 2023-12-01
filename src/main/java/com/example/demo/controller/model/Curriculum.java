@@ -1,3 +1,5 @@
+package com.example.demo.controller.model;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,8 +20,6 @@ public class Curriculum {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curriculum")
     private List<Experience> experiences;
-
-    // Construtores, getters e setters
 
     public Curriculum() {
     }

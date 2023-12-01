@@ -24,8 +24,6 @@ public class Experience {
     @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
 
-    // Construtores, getters e setters
-
     public Experience() {
     }
 
