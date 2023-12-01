@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.controller.model.Curriculum;
+import com.example.demo.controller.model.Education;
+import com.example.demo.controller.model.Experience;
 import com.example.demo.controller.service.CurriculumService;
 
 import java.net.URI;
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class CurriculumController {
     @Autowired
     private CurriculumService curriculumService;
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Curriculum> getCurriculum(@PathVariable Long id) {
@@ -33,6 +36,22 @@ public class CurriculumController {
     public ResponseEntity<Curriculum> createCurriculum(@RequestBody Curriculum curriculum) {
         Curriculum savedCurriculum = curriculumService.saveCurriculum(curriculum);
         return ResponseEntity.created(URI.create("/api/curriculum/" + savedCurriculum.getId())).body(savedCurriculum);
+    }
+
+    @PostMapping("/{curriculumId}/experience")
+    public ResponseEntity<Experience> addExperienceToCurriculum(
+            @PathVariable Long curriculumId,
+            @RequestBody Experience experience) {
+        Experience savedExperience = curriculumService.addExperienceToCurriculum(curriculumId, experience);
+        return ResponseEntity.created(URI.create("/api/experience/" + savedExperience.getId())).body(savedExperience);
+    }
+
+    @PostMapping("/{curriculumId}/education")
+    public ResponseEntity<Education> addEducationToCurriculum(
+            @PathVariable Long curriculumId,
+            @RequestBody Education education) {
+        Education savedEducation = curriculumService.addEducationToCurriculum(curriculumId, education);
+        return ResponseEntity.created(URI.create("/api/education/" + savedEducation.getId())).body(savedEducation);
     }
 
     @PutMapping("/{id}")
